@@ -45,23 +45,33 @@
             <h2>Let's do this!</h2>
             <form action="/" id="form1">
               <label for="first-name">
-                FIRST NAME <input type="text" name="first" id="first-name" />
+                FIRST NAME
+                <input type="text" name="first" id="first-name" required />
               </label>
               <label for="last-name">
-                LAST NAME <input type="text" name="last" id="last-name" />
+                LAST NAME
+                <input type="text" name="last" id="last-name" required />
               </label>
               <label for="email">
                 EMAIL <input type="email" name="email" id="email" required />
               </label>
               <label for="phone">
                 PHONE NUMBER
-                <input type="number" name="first" id="first-name" />
+                <input type="number" name="phone" id="phone" />
               </label>
-              <label for="first-name">
-                FIRST NAME <input type="text" name="first" id="first-name" />
+              <label for="pass">
+                PASSWORD
+                <input type="password" name="pass" id="pass" required />
+                <span class="pass-error">* Passwords do not match</span>
               </label>
-              <label for="first-name">
-                FIRST NAME <input type="text" name="first" id="first-name" />
+              <label for="confirm-pass">
+                CONFIRM PASSWORD
+                <input
+                  type="password"
+                  name="confirm-pass"
+                  id="confirm-pass"
+                  required
+                />
               </label>
             </form>
           </div>
@@ -72,5 +82,25 @@
         </div>
       </section>
     </div>
+    <script>
+      const form = document.querySelector("#form1");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const password = document.querySelector("#pass").value;
+        const passwordBox = document.querySelector("#pass");
+        const confirmPassBox = document.querySelector("#confirm-pass");
+        const confirmPass = document.querySelector("#confirm-pass").value;
+        const passError = document.querySelector(".pass-error");
+        if (password !== confirmPass) {
+          passError.style.display = "block";
+          passwordBox.style.border = "1px solid #a80606";
+          confirmPassBox.style.border = "1px solid #a80606";
+        } else {
+          passError.style.display = "none";
+          password.style.border = "1px solid #ccc";
+          confirmPass.style.border = "1px solid #ccc";
+        }
+      });
+    </script>
   </body>
 </html>
